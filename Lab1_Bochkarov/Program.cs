@@ -8,18 +8,6 @@ namespace Lab1_Bochkarov
         {
             GameAccount player1 = new GameAccount("Petya228", 100);
             GameAccount player2 = new GameAccount("Chokopie", 100);
-
-            // Game game1;
-            // try
-            // {
-            //     game1 = new Game(player1, player2, 8);
-            // }
-            // catch (ArgumentOutOfRangeException e)
-            // {
-            //     Console.WriteLine("Exception caught while creating a game with negative raiting");
-            //     Console.WriteLine(e.ToString());
-            //     return;
-            // }
             
             Game game1 = new Game(player1, player2, 8);
             game1.Play();
