@@ -1,0 +1,7 @@
+C:\Users\nick5\RiderProjects\Lab1_Bochkarov\Lab1_Bochkarov\bin\Debug\Lab1_Bochkarov.exe
+C:\Users\nick5\RiderProjects\Lab1_Bochkarov\Lab1_Bochkarov\bin\Debug\Lab1_Bochkarov.pdb
+C:\Users\nick5\RiderProjects\Lab1_Bochkarov\Lab1_Bochkarov\obj\Debug\Lab1_Bochkarov.csproj.AssemblyReference.cache
+C:\Users\nick5\RiderProjects\Lab1_Bochkarov\Lab1_Bochkarov\obj\Debug\Lab1_Bochkarov.csproj.SuggestedBindingRedirects.cache
+C:\Users\nick5\RiderProjects\Lab1_Bochkarov\Lab1_Bochkarov\obj\Debug\Lab1_Bochkarov.csproj.CoreCompileInputs.cache
+C:\Users\nick5\RiderProjects\Lab1_Bochkarov\Lab1_Bochkarov\obj\Debug\Lab1_Bochkarov.exe
+C:\Users\nick5\RiderProjects\Lab1_Bochkarov\Lab1_Bochkarov\obj\Debug\Lab1_Bochkarov.pdb
