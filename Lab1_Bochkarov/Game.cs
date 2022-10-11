@@ -5,7 +5,7 @@ namespace Lab1_Bochkarov
     public class Game
     {
         private static Random _rand = new Random();
-        private static int _gameIndexSeed = 123455;
+        private static int _gameIndexSeed = 38256;
         private GameAccount acc1, acc2;
         public GameAccount Winner { get; set; }
         public GameAccount Looser { get; set; }
@@ -18,8 +18,6 @@ namespace Lab1_Bochkarov
             this.acc2 = acc2;
             RatingCheck(Rating);
             GameIndex = _gameIndexSeed;
-            Winner = null;
-            Looser = null;
             _gameIndexSeed++;
         }
         
@@ -27,7 +25,7 @@ namespace Lab1_Bochkarov
         {
             if (acc1.CurrentRating - Rating < 1 || acc2.CurrentRating - Rating < 1)
             {
-                Console.WriteLine($"Player rating can not be lower than 1");
+                Console.WriteLine($"Game rating is too high. Player`s rating can not be lower than 1");
                 return;
             }
             Console.WriteLine($"Game index: {GameIndex}");

@@ -6,8 +6,8 @@ namespace Lab1_Bochkarov
     {
         public static void Main(string[] args)
         {
-            GameAccount player1 = new GameAccount("Petya228", 100);
-            GameAccount player2 = new GameAccount("Chokopie", 100);
+            GameAccount player1 = new GameAccount("Thomas");
+            GameAccount player2 = new GameAccount("Harry");
             
             Game game1 = new Game(player1, player2, 8);
             game1.Play();
@@ -18,7 +18,7 @@ namespace Lab1_Bochkarov
             Game game3 = new Game(player1, player2, 5);
             game3.Play();
             Console.WriteLine("<---------------------------------------------------->");
-            Game game4 = new Game(player1, player2, 15);
+            Game game4 = new Game(player1, player2, 100);
             game4.Play();
             Console.WriteLine("<---------------------------------------------------->");
             Game game5 = new Game(player1, player2, 25);

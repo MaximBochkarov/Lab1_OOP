@@ -11,10 +11,10 @@ namespace Lab1_Bochkarov
         
         public List<Game> AllStats = new List<Game>();
 
-        public GameAccount(string UserName, int CurrentRating)
+        public GameAccount(string UserName)
         {
             this.UserName = UserName;
-            this.CurrentRating = CurrentRating;
+            CurrentRating = 100;
             GamesCount = 0;
         }
 
