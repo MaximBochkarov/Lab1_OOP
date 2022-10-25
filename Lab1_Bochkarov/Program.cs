@@ -15,7 +15,7 @@ namespace Lab1_Bochkarov
             Game game2 = new Game(player1, player2, 20);
             game2.Play();
             Console.WriteLine("<---------------------------------------------------->");
-            Game game3 = new Game(player1, player2, 5);
+            Game game3 = new Game(player1, player2, -5);
             game3.Play();
             Console.WriteLine("<---------------------------------------------------->");
             Game game4 = new Game(player1, player2, 100);
