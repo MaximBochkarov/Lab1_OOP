@@ -9,13 +9,19 @@ namespace Lab1_Bochkarov
         public int CurrentRating { get; private set; }
         private int GamesCount { get; set; }
         
-        public List<Game> AllStats = new List<Game>();
+        private const int InitialRating = 100;
+        
+        private readonly List<HistoryGame> _allStats = new List<HistoryGame>();
 
-        public GameAccount(string UserName)
+        public GameAccount(string userName)
         {
-            this.UserName = UserName;
-            CurrentRating = 100;
+            UserName = userName;
+            CurrentRating = InitialRating;
             GamesCount = 0;
+        }
+        public void AddHistoryGame(HistoryGame historyGame)
+        {
+            _allStats.Add(historyGame);
         }
 
         public void WinGame(GameAccount opponent, int rating)
@@ -35,17 +41,15 @@ namespace Lab1_Bochkarov
             int gameNumber = 1;
             Console.WriteLine($"(<-The game history for: {UserName}->)");
             Console.WriteLine($"Total games: {GamesCount}, current rating: {CurrentRating}");
-            foreach(var game in AllStats)
+            foreach(var game in _allStats)
             {
                 Console.Write($"Game number: {gameNumber++} --> \t");
-                Console.WriteLine(UserName.Equals(game.Winner.UserName)
-                    ? $"Win against {game.Looser.UserName},\t game rating: {game.Rating},\t index: {game.GameIndex}"
-                    : $"Lose against {game.Winner.UserName},\t game rating: {game.Rating},\t index: {game.GameIndex}");
+                Console.WriteLine(game.GameStatus.Equals(GameStatus.Win)
+                    ? $"Win against {game.Opponent.UserName},\t game rating: {game.Rating},\t index: {game.GameIndex}"
+                    : $"Lose against {game.Opponent.UserName},\t game rating: {game.Rating},\t index: {game.GameIndex}");
             }
             
         }
-        
-        
-        
+
     }
 }

@@ -6,19 +6,15 @@ namespace Lab1_Bochkarov
     {
         private static readonly Random Rand = new Random();
         private static int _gameIndexSeed = 38256;
-        private GameAccount acc1, acc2;
-        public GameAccount Winner { get; set; }
-        public GameAccount Looser { get; set; }
-        public int GameIndex { get; }
-        public int Rating { get; }
+        private readonly GameAccount acc1, acc2;
+        private int GameIndex { get; set; }
+        private int Rating { get; }
         
-        public Game(GameAccount acc1, GameAccount acc2, int Rating)
+        public Game(GameAccount acc1, GameAccount acc2, int rating)
         {
             this.acc1 = acc1;
             this.acc2 = acc2;
-            this.Rating = Rating;
-            GameIndex = _gameIndexSeed;
-            _gameIndexSeed++;
+            Rating = rating;
         }
         
         public void Play()
@@ -38,6 +34,8 @@ namespace Lab1_Bochkarov
                 Console.WriteLine($"Game rating is too high. Player`s rating can not be lower than 1");
                 return;
             }
+
+            GameIndex = GetNextInd();
             
             Console.WriteLine($"Game index: {GameIndex}");
             int decide = Rand.Next(1, 3);
@@ -50,17 +48,17 @@ namespace Lab1_Bochkarov
             {
                 AssignStatusWinner(acc2, acc1);
             }
-            acc1.AllStats.Add(this);
-            acc2.AllStats.Add(this);
         }
 
-        private void AssignStatusWinner(GameAccount Winner, GameAccount Looser)
+        private void AssignStatusWinner(GameAccount winner, GameAccount looser)
         {
-            this.Winner = Winner;
-            this.Looser = Looser;
-            Winner.WinGame(Looser, Rating);
-            Looser.LoseGame(Winner, Rating);
+            winner.WinGame(looser, Rating);
+            looser.LoseGame(winner, Rating);
+            winner.AddHistoryGame(new HistoryGame(looser, Rating, GameIndex, GameStatus.Win));
+            looser.AddHistoryGame(new HistoryGame(winner, Rating, GameIndex, GameStatus.Lose));
         }
+        
+        private static int GetNextInd() => ++_gameIndexSeed;     
         private static void CheckNegativeRating(int rating)
         {
             if(rating < 0)
