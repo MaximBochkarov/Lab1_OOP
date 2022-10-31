@@ -6,41 +6,41 @@ namespace Lab1_Bochkarov
     public class GameAccount
     {
         private string UserName { get; }
-        public int CurrentRating { get; private set; }
-        private int GamesCount { get; set; }
         
+        private int _currentRating;
+        public int CurrentRating
+        {
+            get => _currentRating < 1 ? 1 : _currentRating;
+            private set => _currentRating = value;
+        }
+
         private const int InitialRating = 100;
         
         private readonly List<HistoryGame> _allStats = new List<HistoryGame>();
+        
 
         public GameAccount(string userName)
         {
             UserName = userName;
             CurrentRating = InitialRating;
-            GamesCount = 0;
         }
-        public void AddHistoryGame(HistoryGame historyGame)
+        public void WinGame(Game game, GameAccount opponent)
         {
-            _allStats.Add(historyGame);
+            Console.WriteLine($"Player {UserName} beat {opponent.UserName}, +{game.Rating} points");
+            _allStats.Add(new HistoryGame(opponent, game.Rating, game.GameIndex, GameStatus.Win));
+            CurrentRating += game.Rating;
         }
-
-        public void WinGame(GameAccount opponent, int rating)
+        public void LoseGame(Game game, GameAccount opponent)
         {
-            Console.WriteLine($"Player {UserName} beat {opponent.UserName}, +{rating} points");
-            CurrentRating += rating;
-            GamesCount += 1;
-        }
-        public void LoseGame(GameAccount opponent, int rating)
-        {
-            Console.WriteLine($"Player {UserName} lose to {opponent.UserName}, -{rating} points");
-            CurrentRating -= rating;
-            GamesCount += 1;
+            Console.WriteLine($"Player {UserName} lose to {opponent.UserName}, -{game.Rating} points");
+            _allStats.Add(new HistoryGame(opponent, game.Rating, game.GameIndex, GameStatus.Lose));
+            CurrentRating -= game.Rating;
         }
         public void GetStats()
         {
             int gameNumber = 1;
             Console.WriteLine($"(<-The game history for: {UserName}->)");
-            Console.WriteLine($"Total games: {GamesCount}, current rating: {CurrentRating}");
+            Console.WriteLine($"Total games: {_allStats.Count}, current rating: {CurrentRating}");
             foreach(var game in _allStats)
             {
                 Console.Write($"Game number: {gameNumber++} --> \t");

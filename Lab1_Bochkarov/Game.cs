@@ -7,8 +7,8 @@ namespace Lab1_Bochkarov
         private static readonly Random Rand = new Random();
         private static int _gameIndexSeed = 38256;
         private readonly GameAccount acc1, acc2;
-        private int GameIndex { get; set; }
-        private int Rating { get; }
+        public int GameIndex { get; set; }
+        public int Rating { get; }
         
         public Game(GameAccount acc1, GameAccount acc2, int rating)
         {
@@ -52,10 +52,8 @@ namespace Lab1_Bochkarov
 
         private void AssignStatusWinner(GameAccount winner, GameAccount looser)
         {
-            winner.WinGame(looser, Rating);
-            looser.LoseGame(winner, Rating);
-            winner.AddHistoryGame(new HistoryGame(looser, Rating, GameIndex, GameStatus.Win));
-            looser.AddHistoryGame(new HistoryGame(winner, Rating, GameIndex, GameStatus.Lose));
+            winner.WinGame(this ,looser);
+            looser.LoseGame(this ,winner);
         }
         
         private static int GetNextInd() => ++_gameIndexSeed;     
